@@ -1,0 +1,23 @@
+{
+  "list": [
+    {
+      "id": 1,
+      "name": "kasumi",
+      "gender": "Female"
+    },
+    {
+      "id": 2,
+      "name": "yui",
+      "gender": "Female"
+    },
+    {
+      "id": 3,
+      "name": "junko",
+      "gender": "Female"
+    },
+    {
+      "name": "fugafuga",
+      "id": 4
+    }
+  ]
+}

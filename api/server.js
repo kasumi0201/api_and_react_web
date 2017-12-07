@@ -2,10 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const server = express();
 const moviesRouter = require('./routes/movies');
+const samples = require('./routes/samples');                        // ★★★★★　追記箇所1　★★★★★
+
 
 // parse application/x-www-form-urlencoded
 server.use(bodyParser.urlencoded({ extended: true }));
-
 // parse application/json
 server.use(bodyParser.json());
 // server.use(moviesRouter);
@@ -16,7 +17,15 @@ server.use(function(err, req, res, next) {
   res.status(500).send('Something broke!');
 });
 
-server.get('/',(req,res)=>{
+const middleware = {
+  logger: function(req, res, next){
+    console.log(new Date(), req.method, req.originalUrl, req.body);
+    next();
+  }
+}
+
+//ここがLogger。userがどんな動きをしてるか見れる。ex.ページを更新する度に日付、アクセスしたページなどが表示される。
+server.get('/', [middleware.logger], (req,res)=>{
 
   res.json({
     resources: [{
@@ -37,3 +46,5 @@ const port = 7000;
 server.listen(port,()=>{
   console.log(`Movies API server running ${port}`);
 });
+
+server.use('/samples', samples);    
