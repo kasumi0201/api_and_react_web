@@ -26,7 +26,6 @@ const middleware = {
 
 //ここがLogger。userがどんな動きをしてるか見れる。ex.ページを更新する度に日付、アクセスしたページなどが表示される。
 server.get('/', [middleware.logger], (req,res)=>{
-
   res.json({
     resources: [{
       movies: '/movies'
@@ -47,4 +46,4 @@ server.listen(port,()=>{
   console.log(`Movies API server running ${port}`);
 });
 
-server.use('/samples', samples);    
+server.use('/samples', samples);

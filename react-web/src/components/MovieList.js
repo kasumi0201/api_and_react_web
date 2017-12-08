@@ -3,12 +3,12 @@ import Movie from './Movie'
 
 
 export default function MovieList({ movies }){
+  console.log(movies)
   return (
     <div>
     <h1>Movie List</h1>
     {
       movies.map( movie => (
-         // console.log( movie )
        <Movie key={movie._id} {...movie}/>
      ))
     }

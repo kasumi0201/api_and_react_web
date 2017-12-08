@@ -1,6 +1,4 @@
 const express = require('express');
-// const jsonServer = require('json-server');
-
 const Movie = require('../models/movie');
 const Person = require('../models/person');
 
