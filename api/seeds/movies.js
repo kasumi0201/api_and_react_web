@@ -8,7 +8,7 @@ Movie.create([
     star: "Gal Gadot"
   },
   {
-    title: "Star Wars",
+    title: "star Wars",
     yearReleased: 1977,
     star: "Carrie Fisher"
   }

@@ -23,7 +23,7 @@ server.use('/auth',require('./routes/auth'));
 
 server.use(function(err, req, res, next) {
   console.error(err.stack);
-  res.status(500).send('Something broke!');
+  res.status(500).send(err.message);
 });
 
 const middleware = {

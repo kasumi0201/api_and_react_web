@@ -4,10 +4,10 @@ POST http://localhost:7000/auth/register
 Content-Type: application/json
 
 {
-  "email": takeshima@example.com,
-  "firstName": takeshima,
-  "lastName": "kasumi",
-  "password": "password1"
+  email: "takeshima@example.com",
+  firstName: "takeshima",
+  lastName: "kasumi",
+  password: "password1"
 }
 
 ### Signin
@@ -24,4 +24,12 @@ Content-Type: application/json
 Send Request
 POST http://localhost:7000/movies
 Content-Type: application/json
-Cookie: connect.sid=
+
+
+
+{
+  "email": "takeshima@example.com",
+  "firstName": "takeshima",
+  "lastName": "kasumi",
+  "password": "password1"
+}

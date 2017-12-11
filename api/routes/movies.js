@@ -5,12 +5,11 @@ const Person = require('../models/person');
 const router = express.Router();
 
 const authorize = (req, res, next) => {
-if(req.user){
-  next();
-} else{
+  if(req.user){
+    next();
+  } else{
   res.status(403).end();
-}
-
+  }
 }
 
 router.get('/', authorize,(req, res) => {
