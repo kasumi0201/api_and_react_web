@@ -9,7 +9,7 @@ lastName: String
 UserSchema.plugin(passportLocalMongoose,{
 usernameField: 'email',
 usernameLowerCase: true,
-session: false
+session: true
 });
 
 const User = mongoose.model('User',UserSchema);

@@ -19,3 +19,9 @@ Content-Type: application/json
   "email": takeshima@example.com,
   "password": "password1"
 }
+
+### Protected Movies
+Send Request
+POST http://localhost:7000/movies
+Content-Type: application/json
+Cookie: connect.sid=

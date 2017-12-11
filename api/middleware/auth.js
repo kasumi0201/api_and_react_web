@@ -2,6 +2,9 @@ const passport = require('passport');
 const User = require('../models/user');
 
 passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 
 function register(req, res, next){
   const user = new User({
@@ -23,8 +26,9 @@ function register(req, res, next){
 }
 
 module.exports = {
+  initialize: [passport.initialize(),passport.session()],
   register,
-  signIn: passport.authenticate('local',{session: false})
+  signIn: passport.authenticate('local',{session: true})
 }
 
 //signIn?

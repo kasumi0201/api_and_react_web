@@ -16,4 +16,10 @@ authMiddleware.signIn,
   res.json({ user: req.user })
 });
 
+router.get('./movies',
+  (req,res)=>{
+    res.send({ movies: ['Movies!'] })
+})
+
+
 module.exports = router;

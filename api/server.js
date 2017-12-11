@@ -1,14 +1,22 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const server = express();
-const moviesRouter = require('./routes/movies');
-                      // ★★★★★　追記箇所1　★★★★★
+const authMiddleware = require('./middleware/auth');
 
+const server = express();
+
+server.use(require('cookie-parser')());
 // parse application/x-www-form-urlencoded
 server.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 server.use(bodyParser.json());
 // server.use(moviesRouter);
+
+server.use(require('express-session')(
+  {secret: 'secret', resave: false, saveUninitialized: false}
+));
+server.use(authMiddleware.initialize);
+
+const moviesRouter = require('./routes/movies');
 server.use('/movies',moviesRouter);
 server.use('/auth',require('./routes/auth'));
 
