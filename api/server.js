@@ -2,8 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const server = express();
 const moviesRouter = require('./routes/movies');
-const samples = require('./routes/samples');                        // ★★★★★　追記箇所1　★★★★★
-
+                      // ★★★★★　追記箇所1　★★★★★
 
 // parse application/x-www-form-urlencoded
 server.use(bodyParser.urlencoded({ extended: true }));
@@ -11,6 +10,8 @@ server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 // server.use(moviesRouter);
 server.use('/movies',moviesRouter);
+server.use('/auth',require('./routes/auth'));
+
 
 server.use(function(err, req, res, next) {
   console.error(err.stack);
@@ -45,5 +46,3 @@ const port = 7000;
 server.listen(port,()=>{
   console.log(`Movies API server running ${port}`);
 });
-
-server.use('/samples', samples);
