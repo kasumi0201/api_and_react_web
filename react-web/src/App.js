@@ -3,6 +3,8 @@ import './App.css';
 import MoviesList from './components/MovieList.js'
 import MovieForm from './components/MovieForm'
 import * as moviesAPI from './api/movies'
+import Login from './users/Login'
+
 
 class App extends Component {
     state = {movies: null}
@@ -27,6 +29,7 @@ class App extends Component {
       // console.log(movies);
       return (
         <div className="App">
+        <Login />
         <MovieForm onSubmit={this.handleMovieSubmission}/>
         <hr/>
         {

@@ -1,0 +1,35 @@
+### Register
+Send Request
+POST http://localhost:7000/auth/register
+Content-Type: application/json
+
+{
+  email: "takeshima@example.com",
+  firstName: "takeshima",
+  lastName: "kasumi",
+  password: "password1"
+}
+
+### Signin
+Send Request
+POST http://localhost:7000/auth/signin
+Content-Type: application/json
+
+{
+  "email": takeshima@example.com,
+  "password": "password1"
+}
+
+### Protected Movies
+Send Request
+POST http://localhost:7000/movies
+Content-Type: application/json
+
+
+
+{
+  "email": "takeshima@example.com",
+  "firstName": "takeshima",
+  "lastName": "kasumi",
+  "password": "password1"
+}
