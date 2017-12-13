@@ -24,7 +24,7 @@ Content-Type: application/json
 Send Request
 POST http://localhost:7000/movies
 Content-Type: application/json
-
+Authorization: Bearer ey.....
 
 
 {

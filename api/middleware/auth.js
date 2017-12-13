@@ -1,63 +1,30 @@
 const passport = require('passport');
 const User = require('../models/user');
 const JWT = require('jsonwebtoken');
+const PassportJWT = require('passport-jwt');
 
-// var LocalStrategy = require('passport-local').Strategy;
+passport.use(User.createStrategy());
 
- passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
-
-// passport.use(new LocalStrategy(
-//     {
-//         emailField: 'email',
-//         passwordField: 'password',
-//         passReqToCallback: true
-//     },
-//     function (req, name, password, done) {
-//         process.nextTick(function () {
-//             var Account = mongoose.model('Account');
-//             Account.findOne({ "id": name }, function (err, account) {
-//                 if (err) return done(err);
-//                 if (!account) {
-//                     req.flash('error', 'user can not find');
-//                     req.flash('input_id', email);
-//                     req.flash('input_password', password);
-//                     return done(null, false);
-//                 }
-//                 var hashedPassword = getHash(password);
-//                 if (account.password != hashedPassword
-//                     && account.password != password) {
-//                     req.flash('error', 'passport is wrong');
-//                     req.flash('input_id', email);
-//                     req.flash('input_password', password);
-//                     return done(null, false);
-//                 }
-//                 return done(null, account);
-//             });
-//         })
-//     }
-//));
-//
-// // 暗号化
-// var getHash = function(value) {
-//     var sha = crypto.createHmac('sha256', 'secretKey');
-//     sha.update(value);
-//     return sha.digest('hex');
-// };
-//
-// // passport
-// passport.serializeUser(function (account, done) {
-//     done(null, account.id);
-// });
-// passport.deserializeUser(function (serializedAccount, done) {
-//     var Account = mongoose.model('Account');
-//     Account.findOne({ "id": serializedAccount }, function (err, account) {
-//         done(err, account.id);
-//     });
-// });
-
+passport.use(new PassportJWT.Strategy(
+   {
+     jwtFromRequest: PassportJWT.ExtractJwt.fromAuthHeaderAsBearerToken(),
+     secretOrKey: 'topsecret',
+     algorithms: ['HS256']
+   },
+   (payload, done)=> {
+     User.findById(payload.sub)
+     .then((user)=>{
+       if(user){
+                   done(null, user);
+              } else {
+                   done(null, false);
+              }
+     })
+     .catch((error)=>{
+       done(null, false);
+     })
+   }
+ ));
 
 function register(req, res, next){
   const user = new User({
@@ -97,5 +64,6 @@ module.exports = {
   initialize: [passport.initialize(),passport.session()],
   register,
   signJWTForUser,
-  signIn: passport.authenticate('local',{session: true})
+  signIn: passport.authenticate('local',{session: false}),
+  requireJWT: passport.authenticate('jwt',{session: false}),
 }

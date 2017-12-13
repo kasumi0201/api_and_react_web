@@ -2,7 +2,6 @@ const mongoose = require('./base');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
-
 const CommentSchema = Schema({
   body: String
 });
@@ -19,5 +18,5 @@ const movieSchema = mongoose.Schema({
   cast: [{ actor: { type: ObjectId, ref: 'Person' } }],
   crew: [{ person: { type: ObjectId, role: String } }]
 });
-const Movie = mongoose.model('Movie', movieSchema);
+const Movie = mongoose.model.Movie || mongoose.model('Movie', movieSchema);
 module.exports = Movie;
