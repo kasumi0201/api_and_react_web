@@ -41,6 +41,7 @@ class App extends Component {
 
         <li><Link to="/movies">movies</Link></li>
         <li><Link to="/movies/new">movies new</Link></li>
+        <div className = "container">
         <Route path="/" render={() => (<div>Hello Kasumi!</div>)}/>
         <Route path="/movies/new" render={
           () => (
@@ -52,6 +53,7 @@ class App extends Component {
             <MoviesPage movies = {movies}/>
           )
         }/>
+        </div>
         </div>
       </Router>
     );
