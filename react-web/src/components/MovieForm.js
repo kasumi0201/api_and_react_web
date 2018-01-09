@@ -1,26 +1,43 @@
 import React from 'react';
+import { Redirect } from 'react-router';
 
-export default function MovieForm({ onSubmit }){
-  function handleFormSubmission(event){
-    const {elements}=event.target;
-    const title=elements["title"].value;
-    const yearReleased=elements["yearReleased"].value;
-    onSubmit({title, yearReleased});
+// export default function MovieForm({ onSubmit }) {
+
+class MovieForm extends React.Component{
+  state = { redirect: false }
+
+   handleFormSubmission = (event) => {
+    event.preventDefault();
+    const { elements } = event.target;
+    const title = elements["title"].value;
+    const yearReleased = elements["yearReleased"].value;
+    this.setState({ redirect: true });
+    this.props.onSubmit({ title, yearReleased });
   }
 
-  return(
-    <div>
-      <form onSubmit={handleFormSubmission}>
-        <label>
-          Title
-          <input type="text" name="title"/>
-        </label>
-        <label>
-          Year
-          <input type="number" name="yearReleased"/>
-        </label>
-        <button type="submit">Create Movie&hearts;</button>
-      </form>
+  render(){
+    const { redirect } = this.state
+    return (
+      <div>
+        { redirect && <Redirect to="/movies"/> }
+        <form onSubmit = {this.handleFormSubmission} >
+          <label>
+            Title
+            &nbsp;
+            <input type="text" name="title"/>
+          </label>
+          &nbsp;
+          <label>
+            Year
+            &nbsp;
+            <input type="number" name="yearReleased"/>
+          </label>
+          &nbsp;
+          <button type="submit">Create Movie! &hearts;</button>
+        </form>
       </div>
-  )
-}
+      )
+    }
+  }
+
+export default MovieForm;
