@@ -6,7 +6,7 @@ import Movie from '../components/Movie.js'
 
 export default ({ movies }) => {
   return (
-    movies ? (
+    !!movies ? (
     <Switch>
     <Route path="/movies/:id" render={
       ({match})=>{

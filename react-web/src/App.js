@@ -37,30 +37,29 @@ class App extends Component {
     // console.log(movies);
     return (
       <Router>
-      <div>
+        <div>
 
-      <ul className="menu">
-        <li><Link to="/movies">movies</Link></li>
-        <li><Link to="/movies/new">movies new</Link></li>
-        </ul>
+          <ul className="menu">
+            <li><Link to="/movies">movies</Link></li>
+            <li><Link to="/movies/new">movies new</Link></li>
+          </ul>
 
 
-        <div className = "container">
+            <div className = "container">
 
-        <Route path="/" render={() => (<div>Hello Kasumi!</div>)}/>
-        <br/>
-        <Route path="/movies/new" render={
-          () => (
-            <MovieForm onSubmit={this.handleMovieSubmission}/>
-          )
-          }/>
-        <Route path="/movies" render={
-          () => (
-            <MoviesPage movies = {movies}/>
-          )
-        }/>
-        </div>
-        </div>
+              <Route path="/" render={() => (<div>Hello Kasumi!</div>)}/>
+                <br/>
+              <Route path="/movies/new" render={
+                () => (
+                <MovieForm onSubmit={this.handleMovieSubmission}/>
+                )
+                }/>
+              <Route path="/movies" render={() => (
+                  <MoviesPage movies = {movies}/>
+                )
+              }/>
+            </div>
+          </div>
       </Router>
     );
   }
