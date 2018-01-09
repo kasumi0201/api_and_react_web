@@ -6,8 +6,8 @@ export default function MovieList({ movies }) {
     <div>
       <h1>Movie List!</h1>
       {
-        movies.map(movie => (
-          <Movie key={movie._id} {...movie}/>
+        movies.map((movie) => (
+          <Movie key = {movie._id} {...movie}/>
         ))
       }
      </div>

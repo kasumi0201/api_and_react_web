@@ -1,10 +1,11 @@
 body {
-  margin: 0;
-  padding: 0;
+  /*margin: 0;
+  padding: 0;*/
   font-family: sans-serif;
   background: #ccf6f4;
   color: rgb(177, 181, 179);
   margin: 20px;
+  text-align: center;
 }
 
 a{
@@ -16,5 +17,38 @@ li{
 }
 
 .container{
-  margin:40px;
+  margin-top:100px;
+}
+
+
+.menu {
+  /*width:800px;/* 横の長さ */*/
+  padding:0;
+  margin:0;
+  list-style-type: none;/* 点なし */
+  margin-bottom: 10%;
+  /*position: relative;*/
+}
+
+.menu li {
+  width:20%;
+  display: inline-block;
+  /*float:left;/* 左寄せ */*/
+  padding:5px;
+  margin:0;
+  text-align:center;/* 字は中央に */
+}
+.menu li a {
+  width:auto;
+  color:#fff;/* 字の色 */
+  font-size:24px;/* 字の大きさ */
+  font-weight:bold;/* 字の太さ */
+  /*padding:10px 0;*/
+  text-decoration:none;/* アンダーラインなし */
+  display:block;/* 横並び */
+  background:rgb(250,100,100); /* ピンク */
+}
+
+.menu li a:hover {
+  background:#555;
 }

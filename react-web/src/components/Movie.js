@@ -5,8 +5,12 @@ export default function Movie(props){
   const { title, yearReleased, director, comments } = props;
   return(
     <div className="movie" >
+      <br/>
+
       <span>Title: {title}</span>
-      <span>year: {yearReleased}</span>
+      <br/>
+      <span>Year: {yearReleased}</span>
+      
       {director && <span>Director: {director.firstName} {director.lastName}
       </span>}
       <div>

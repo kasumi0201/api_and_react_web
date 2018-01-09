@@ -39,10 +39,16 @@ class App extends Component {
       <Router>
       <div>
 
+      <ul className="menu">
         <li><Link to="/movies">movies</Link></li>
         <li><Link to="/movies/new">movies new</Link></li>
+        </ul>
+
+
         <div className = "container">
+
         <Route path="/" render={() => (<div>Hello Kasumi!</div>)}/>
+        <br/>
         <Route path="/movies/new" render={
           () => (
             <MovieForm onSubmit={this.handleMovieSubmission}/>
