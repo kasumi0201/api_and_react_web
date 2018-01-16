@@ -1,26 +1,26 @@
 import React from 'react';
-import { Redirect } from 'react-router';
+import { Redirect } from 'react-router-dom'
 
-// export default function MovieForm({ onSubmit }) {
+class MovieForm extends React.Component {
+  // export default function MovieForm({ onSubmit, redirect }) {
 
-class MovieForm extends React.Component{
   state = { redirect: false }
 
-   handleFormSubmission = (event) => {
+  handleFormSubmission = (event) => {
     event.preventDefault();
     const { elements } = event.target;
     const title = elements["title"].value;
     const yearReleased = elements["yearReleased"].value;
-    this.setState({ redirect: true });
+    this.setState({ redirect: true })
     this.props.onSubmit({ title, yearReleased });
   }
 
-  render(){
+  render() {
     const { redirect } = this.state
     return (
       <div>
         { redirect && <Redirect to="/movies"/> }
-        <form onSubmit = {this.handleFormSubmission} >
+        <form onSubmit={ this.handleFormSubmission } >
           <label>
             Title
             &nbsp;
@@ -36,8 +36,8 @@ class MovieForm extends React.Component{
           <button type="submit">Create Movie! &hearts;</button>
         </form>
       </div>
-      )
-    }
+    )
   }
+}
 
-export default MovieForm;
+export default MovieForm

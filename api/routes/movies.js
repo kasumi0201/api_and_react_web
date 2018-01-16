@@ -7,15 +7,14 @@ const router = express.Router();
 
 // const authorize = (req, res, next) => {
 //   next(); return;
-//      if(req.user){
+//   if (req.user) {
 //     next();
-//   } else{
-//   res.status(403).end();
+//   } else {
+//     res.status(403).end();
 //   }
 // }
 
-// router.get('/', authMiddleware.requireJWT,(req, res) => {
-router.get('/', (req, res) => {
+router.get('/', authMiddleware.requireJWT, (req, res) => {
   Movie.find()
     .populate('director')
     .populate('crew.person')
@@ -32,6 +31,5 @@ router.post('/', (req, res) => {
     })
     .catch(error => res.json({ error }))
 });
-
 
 module.exports = router;

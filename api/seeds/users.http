@@ -1,35 +1,32 @@
 ### Register
-Send Request
 POST http://localhost:7000/auth/register
 Content-Type: application/json
 
 {
-  email: "takeshima@example.com",
-  firstName: "takeshima",
-  lastName: "kasumi",
-  password: "password1"
+    "email": "john.brown@example.com",
+    "firstName": "John",
+    "lastName": "Brown",
+    "password": "password1"
 }
 
+
 ### Signin
-Send Request
 POST http://localhost:7000/auth/signin
 Content-Type: application/json
 
 {
-  "email": takeshima@example.com,
-  "password": "password1"
+    "email": "john.brown@example.com",
+    "password": "password1"
 }
 
-### Protected Movies
-Send Request
-POST http://localhost:7000/movies
+
+### Protected Movies with a cookie
+GET http://localhost:7000/movies
 Content-Type: application/json
-Authorization: Bearer ey.....
+Cookie: connect.sid=xs%3AkLenLsMVcm1hfEeSx0ewa35vPnUt3SOm.QnZRfdhQF%2FP%2Bnd57rPQziA2lkpGIsfQw2kJf4wyVPxA;
 
 
-{
-  "email": "takeshima@example.com",
-  "firstName": "takeshima",
-  "lastName": "kasumi",
-  "password": "password1"
-}
+### Protected Movies with a bearer token
+GET http://localhost:7000/movies
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG4uYnJvd25AZXhhbXBsZS5jb20iLCJpYXQiOjE1MTU5OTg5NzIsImV4cCI6MTUxNjYwMzc3Miwic3ViIjoiNWEzMDdhZmY3YjQzNWExMTI2MTNmYmY4In0.OwbzrZpUUK5u-0HmoJIAaKNi7UXV9VuRrzqTr1uxDUE
