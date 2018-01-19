@@ -1,3 +1,5 @@
+import {token} from './auth'
+
 const MOVIES_API_URL=`${process.env.REACT_APP_API_URL}/movies`
 
 export function all(token) {

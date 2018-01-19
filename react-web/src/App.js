@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch
-} from 'react-router-dom'
-
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import './App.css';
 import AboutPage from './pages/AboutPage'
 import MoviesPage from './pages/MoviesPage'
@@ -14,10 +8,12 @@ import SignInForm from './components/SignInForm'
 import SignOut from './components/SignOut'
 
 import * as moviesAPI from './api/movies'
-import { signIn } from './api/auth'
+import * as auth from './api/auth'
+// import { signIn } from './api/auth'
+import { Redirect } from 'react-router-dom'
 
 class App extends Component {
-  state = { movies: null, token: null }
+  state = { movies: null }
 
   componentDidMount() {
     moviesAPI.all()
@@ -35,20 +31,17 @@ class App extends Component {
 
   handleSignIn = ({ email, password }) => {
     console.log("App received", { email, password })
-    signIn({ email, password })
+    auth.signIn({ email, password })
       .then((data) => {
         console.log('signed in', data)
-        if (data) {
-        const token = data.token
-        if (token) {
-          moviesAPI.all(token)
+        // if (data) {
+          moviesAPI.all()
             .then(movies => {
-              this.setState({ movies, token })
+              this.setState({ movies })
             })
         }
-      }
-      })
-  }
+      )
+    }
 
   handleSignOut = () => {
     this.setState({ movies: null, token: null })
@@ -82,11 +75,17 @@ class App extends Component {
               )
             }/>
             <Route path='/signin' render={() => (
-                <SignInForm token={ this.state.token } onSignIn={ this.handleSignIn } />
+              <div>
+              {auth.isSignedIn() && <Redirect to='/movies'/>}
+                <SignInForm onSignIn={ this.handleSignIn } />
+              </div>
               )
             }/>
             <Route path='/signout' render={() => (
+              <div>
+              {auth.signOut() && <Redirect to='/movies'/>}
               <SignOut onSignOut={ this.handleSignOut }/>
+              </div>
               )
             }/>
           </Switch>
